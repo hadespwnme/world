@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My World</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        .you {
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <h1 class="text-2xl font-bold mb-4">Its My World</h1>
+    
+    <img id="earthImage" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuXzSXO_EDjSWz-e-HplFh3ZahComa95IMN4cot_y4-rW4fyFb10STIYA&s=10" alt="Earth" class="w-64 h-64 rounded-full shadow-lg mb-4">
+    
+    <select id="resolutionSelect" class="p-2 border rounded">
+        <option value="144">144px</option>
+        <option value="240">240px</option>
+        <option value="480">480px</option>
+        <option value="720">720px</option>
+        <option value="1080">1080px</option>
+    </select>
+    
+    <script>
+        document.getElementById('resolutionSelect').addEventListener('change', function() {
+            const resolution = this.value;
+            const earthImage = document.getElementById('earthImage');
+            
+            const imageMap = {
+                '144': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuXzSXO_EDjSWz-e-HplFh3ZahComa95IMN4cot_y4-rW4fyFb10STIYA&s=10',
+                '240': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvbKaFuLiqqCyJt0F6DxjYCiTtUl0FIUeVNQ&usqp=CAU',
+                '480': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIO1LIKbpEONTX96CqPz0uOQvccg1uybfIZ0ajRqMlId4H8Q42-XozWGqK&s=10',
+                '720': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWfn-TvvR5YtPDaqvqe5SMEivJKJeMhl6Gzg&usqp=CAU',
+                '1080': 'https://raw.githubusercontent.com/hadespwnme/webu/refs/heads/main/img/17.jpg?token=GHSAT0AAAAAAC4HNCGZ7M3YNEVDCAYLUJRKZ5PBRJA'
+            };
+            
+            if (resolution === '1080') {
+                Swal.fire({
+                    title: "It's You!",
+                    imageUrl: imageMap['1080'],
+                    imageWidth: 325,
+                    imageHeight: 350,
+                    imageAlt: "You...",
+                    customClass: {
+                        image: 'you'
+                    }
+                });
+            } else {
+                earthImage.src = imageMap[resolution];
+            }
+        });
+    </script>
+</body>
+</html>
